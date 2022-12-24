@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket io</title>
+</head>
+<body>
+    <h1 id="data">Socket io</h1>
+    <h1 id="data1">Socket io</h1>
+
+    <input type="email" id="name">
+    <input type="phone" id="phone">
+    <button onclick="handaleSubmit()">Submit</button>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+       
+/* singel user */
+        const handaleSubmit = () =>{
+            const name = document.getElementById('name').value
+            const phone = document.getElementById('phone').value
+            socket.emit('testEvent', {phone, name});
+        }
+ /* broad custing */
+        socket.on('cup', (data)=>{
+            document.getElementById('data').innerText = data;
+            console.log(data);
+        })
+
+
+        const groupeSocket = io('/worldCup')
+
+        groupeSocket.on('worldCupEvent', (data)=>{
+            document.getElementById('data1').innerText = data
+            console.log(data);
+        })
+    </script>
+</body>
+</html>

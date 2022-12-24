@@ -1,0 +1,81 @@
+npm init --y
+
+npm i express
+npm i nodemon
+npm i cors
+
+
+npm install socket.io
+
+
+Setp =
+
+require express 
+app make by express
+
+app listing port
+
+
+Setp =
+
+get data from server 
+like app.get use
+
+
+Setp =
+
+create Client site html file 
+connect html file to server 
+use same code 
+app.get('/', (req,res)=>{
+    res.sendFile(__dirname + '/app.html');
+})
+
+
+Setp = 
+require socket.io
+const {Server} = require ('socket.io');
+
+connect socket io server to app 
+const io = new Server(httpServer);
+
+
+
+
+
+
+Setp = 
+Client site link with socket io 
+<script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        // write here your user code 
+    </script>
+
+Setp = 
+
+  <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+       
+/* singel user */
+        const handaleSubmit = () =>{
+            const name = document.getElementById('name').value
+            const phone = document.getElementById('phone').value
+            socket.emit('testEvent', {phone, name});
+        }
+ /* broad custing */
+        socket.on('cup', (data)=>{
+            document.getElementById('data').innerText = data;
+            console.log(data);
+        })
+
+
+        const groupeSocket = io('/worldCup')
+
+        groupeSocket.on('worldCupEvent', (data)=>{
+            document.getElementById('data1').innerText = data
+            console.log(data);
+        })
+    </script>
